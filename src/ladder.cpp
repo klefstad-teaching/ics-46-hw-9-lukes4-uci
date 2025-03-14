@@ -32,8 +32,8 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     // }
     
     // return curr[n] <= d;
-
-    return(abs(str1.size() - str2.size()) <= d);
+    int diff = abs(str1.size() - str2.size());
+    return(diff <= d);
 }
 
 // bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
