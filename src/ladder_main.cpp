@@ -4,12 +4,12 @@
 int main() {
     set<std::string> word_list;
 
-    load_words(word_list, "src/words.txt");
-    std::vector<std::string> cat_dog = generate_word_ladder("car", "cheat", word_list);
-    print_word_ladder(cat_dog);
-    std::cout << "size of car -> cheat is " << cat_dog.size() << std::endl;
+    // load_words(word_list, "src/words.txt");
+    // std::vector<std::string> cat_dog = generate_word_ladder("work", "play", word_list);
+    // print_word_ladder(cat_dog);
+    // std::cout << "size of work -> play is " << cat_dog.size() << std::endl;
 
-    // verify_word_ladder();
+    verify_word_ladder();
 
     // my_assert(generate_word_ladder("cat", "dog", word_list).size() == 4);
 

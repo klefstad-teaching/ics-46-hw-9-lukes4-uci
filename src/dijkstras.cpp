@@ -35,23 +35,23 @@ std::vector<int> dijkstra_shortest_path(const Graph& G, int source, std::vector<
 }
 
 std::vector<int> extract_shortest_path(const std::vector<int>& distances, const std::vector<int>& previous, int destination) {
-    // std::stack<int> vertex_stack;
-    // for(int u = destination; u != 0; u = previous[u]) {
-    //     vertex_stack.push(u);
-    // }
-    // vertex_stack.push(0);
-    // std::vector<int> ret;
-    // while(!vertex_stack.empty()) {
-    //     int u = vertex_stack.top();
-    //     ret.push_back(u);
-    //     vertex_stack.pop();
-    // }
-
-    std::vector<int> ret;
+    std::stack<int> vertex_stack;
     for(int u = destination; u != 0; u = previous[u]) {
-        ret.push_back(u);
+        vertex_stack.push(u);
     }
-    ret.push_back(0);
+    vertex_stack.push(0);
+    std::vector<int> ret;
+    while(!vertex_stack.empty()) {
+        int u = vertex_stack.top();
+        ret.push_back(u);
+        vertex_stack.pop();
+    }
+
+    // std::vector<int> ret;
+    // for(int u = destination; u != 0; u = previous[u]) {
+    //     ret.push_back(u);
+    // }
+    // ret.push_back(0);
     return ret;
 }
 void print_path(const std::vector<int>& v, int total) {
