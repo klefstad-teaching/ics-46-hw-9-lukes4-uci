@@ -8,8 +8,10 @@
 void error(std::string word1, std::string word2, std::string msg);
 
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
-    if (str1.size() - str2.size() > d || str2.size() - str1.size() > d) return false;
-    return true;
+    // if (str1.size() - str2.size() > d || str2.size() - str1.size() > d) return false;
+    // return true;
+    int diff = str1.size() - str2.size();
+    return abs(diff) <= 1;
 }
 
 std::string lowercase(std::string word) {
@@ -82,6 +84,10 @@ void load_words(set<std::string> & word_list, const std::string& file_name) {
     } 
 }
 void print_word_ladder(const vector<std::string>& ladder) {
+    if(ladder.size() == 0) {
+        std::cout << "No word ladder found. " << std::endl;
+        return;
+    }
     for(std::string w : ladder) {
         std::cout << w << " ";
     }
