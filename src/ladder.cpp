@@ -8,30 +8,32 @@
 void error(std::string word1, std::string word2, std::string msg);
 
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
-    int m = str1.size();
-    int n = str2.size();
+    // int m = str1.size();
+    // int n = str2.size();
     
-    // Stores dp[i-1][j-1]
-    int prev; 
-    vector<int> curr(n + 1, 0); 
+    // // Stores dp[i-1][j-1]
+    // int prev; 
+    // vector<int> curr(n + 1, 0); 
 
-    for (int j = 0; j <= n; j++)
-        curr[j] = j;
+    // for (int j = 0; j <= n; j++)
+    //     curr[j] = j;
   
-    for (int i = 1; i <= m; i++) {
-        prev = curr[0]; 
-        curr[0] = i;
-        for (int j = 1; j <= n; j++) {
-            int temp = curr[j];
-            if (str1[i - 1] == str2[j - 1])
-                curr[j] = prev;
-            else
-                curr[j] = 1 + min({curr[j - 1], prev, curr[j]});
-            prev = temp;
-        }
-    }
+    // for (int i = 1; i <= m; i++) {
+    //     prev = curr[0]; 
+    //     curr[0] = i;
+    //     for (int j = 1; j <= n; j++) {
+    //         int temp = curr[j];
+    //         if (str1[i - 1] == str2[j - 1])
+    //             curr[j] = prev;
+    //         else
+    //             curr[j] = 1 + min({curr[j - 1], prev, curr[j]});
+    //         prev = temp;
+    //     }
+    // }
     
-    return curr[n] <= d;
+    // return curr[n] <= d;
+
+    return(abs(str1.size() - str2.size()) <= d);
 }
 
 // bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
@@ -75,26 +77,26 @@ std::string lowercase(std::string word) {
 }
 
 bool is_adjacent(const std::string& word1, const std::string& word2) {
-    // if(!edit_distance_within(word1, word2, 1)) return false;
-    // for(size_t i = 0; i < fmax(word1.size(), word2.size()); ++i) {
-    //     std::string word1_comp = word1;
-    //     std::string word2_comp = word2;
-    //     if(i < word1.size()) word1_comp.erase(word1_comp.begin() + i);
-    //     if(i < word2.size()) word2_comp.erase(word2_comp.begin() + i);
+    if(!edit_distance_within(word1, word2, 1)) return false;
+    for(size_t i = 0; i < fmax(word1.size(), word2.size()); ++i) {
+        std::string word1_comp = word1;
+        std::string word2_comp = word2;
+        if(i < word1.size()) word1_comp.erase(word1_comp.begin() + i);
+        if(i < word2.size()) word2_comp.erase(word2_comp.begin() + i);
 
-    //     // std::cout << "word1 = " << word1 <<" ";
-    //     // std::cout << "word2 = " << word2 << " ";
-    //     // std::cout << "word1_comp = " << word1_comp <<" ";
-    //     // std::cout << "word2_comp = " << word2_comp << " ";
-    //     // std::cout << std::endl;
+        // std::cout << "word1 = " << word1 <<" ";
+        // std::cout << "word2 = " << word2 << " ";
+        // std::cout << "word1_comp = " << word1_comp <<" ";
+        // std::cout << "word2_comp = " << word2_comp << " ";
+        // std::cout << std::endl;
 
-    //     if(word1_comp == word2) return true;
-    //     if(word1 == word2_comp) return true;
-    //     if(word1_comp == word2_comp) return true;
-    // }
+        if(word1_comp == word2) return true;
+        if(word1 == word2_comp) return true;
+        if(word1_comp == word2_comp) return true;
+    }
 
-    // return false;
-    return edit_distance_within(word1, word2, 1);
+    return false;
+    // return edit_distance_within(word1, word2, 1);
 }
 
 std::vector<std::string> generate_word_ladder(const std::string& begin_word, const std::string& end_word, const std::set<std::string>& word_list) {
