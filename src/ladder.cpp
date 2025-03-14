@@ -6,6 +6,7 @@
 #include <algorithm>
 
 void error(std::string word1, std::string word2, std::string msg);
+
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
     if (str1.size() - str2.size() > d || str2.size() - str1.size() > d) return false;
     return true;
